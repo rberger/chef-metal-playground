@@ -1,0 +1,24 @@
+DEPENDENCIES
+  rm-metal-cluster
+    path: ../rm-metal-cluster
+
+GRAPH
+  apache (0.0.5)
+    apache2 (>= 0.0.0)
+  apache2 (1.10.2)
+    iptables (>= 0.0.0)
+    logrotate (>= 0.0.0)
+    pacman (>= 0.0.0)
+  apt (2.3.8)
+  build-essential (2.0.0)
+  iptables (0.13.2)
+  logrotate (1.5.0)
+  openssl (1.1.0)
+  pacman (1.1.1)
+  postgresql (3.3.4)
+    apt (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    openssl (>= 0.0.0)
+  rm-metal-cluster (0.1.0)
+    apache (>= 0.0.0)
+    postgresql (>= 0.0.0)

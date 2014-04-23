@@ -1,5 +1,7 @@
 .rake_test_cache
-
+cookbooks
+nodes
+clients
 ###
 # Ignore Chef key files and secrets
 ###
