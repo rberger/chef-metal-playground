@@ -1,5 +1,5 @@
 # Cookbook Name:: myapp
-# Recipe:: delete_machines
+# Recipe:: chefserver.rb
 #
 # Copyright (C) 2014 Robert J. Berger
 #
@@ -16,18 +16,13 @@
 # limitations under the License.
 #
 
-# Use this as the final recipe in your run list to delete all the servers
+# Include this reciepe if you want to use a real chef-server
 
+require 'chef/config'
 require 'chef_metal'
 
-machine 'mario' do
-  action :delete
-end
-
-num_webservers = 1
-
-1.upto(num_webservers) do |i|
-  machine "luigi#{i}" do
-    action :delete
-  end
-end
+# Will get the chef server config from the knife.rb
+with_chef_server Chef::Config[:chef_server_url], {
+  :client_name => Chef::Config[:node_name],
+  :signing_key_filename => Chef::Config[:client_key]
+}

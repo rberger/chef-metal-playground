@@ -1,5 +1,5 @@
 # Cookbook Name:: myapp
-# Recipe:: delete_machines
+# Recipe:: my_machines
 #
 # Copyright (C) 2014 Robert J. Berger
 #
@@ -16,18 +16,21 @@
 # limitations under the License.
 #
 
-# Use this as the final recipe in your run list to delete all the servers
+# This should be the last recipe in your run list. It defines the actual instances (machines) to be deployed.
 
 require 'chef_metal'
 
 machine 'mario' do
-  action :delete
+  recipe 'apt'
+  recipe 'sshd'
+  recipe 'supervisord'
+  tag 'my_master'
 end
 
-num_webservers = 1
+# num_webservers = 1
 
-1.upto(num_webservers) do |i|
-  machine "luigi#{i}" do
-    action :delete
-  end
-end
+# 1.upto(num_webservers) do |i|
+#   machine "luigi#{i}" do
+#     recipe 'apache'
+#   end
+# end

@@ -1,7 +1,7 @@
 current_dir = File.dirname(__FILE__)
 user = ENV['OPSCODE_USER'] || ENV['USER']
 orgname = ENV['ORGNAME'] || "chef"
-client_name = ENV['HOSTNAME']
+client_name = `hostname`.downcase.strip
 chef_server_url          "https://192.168.67.250"
 
 node_name                user

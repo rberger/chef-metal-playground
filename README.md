@@ -153,3 +153,16 @@ cache_options({:path => "#{base_dir}/cache/checksums", :skip_expires => true})
 ssl_verify_mode         :verify_none
 ```
 
+
+# Deploying instances with Chef-Metal
+
+One of the great features of Chef-Metal is that you can create
+cookbook for building a cluster of instances (servers) and decouple
+the target infrastructure (provisioner) from the description of how
+the instance (machine) is defined.
+
+The cookbook `myapp` in `my_cookbooks/myappp` is a cluster cookbook.
+In  `my_cookbooks/myappp/recipes` there is a recipe `that describes the
+machines to be built 
+
+## Deploying a server with Vagrant
