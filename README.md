@@ -1,5 +1,7 @@
 # Overview
 
+__NOTE: UNDER CONSTRUCTION Not yet working fully__
+
 __Chef-Repo for testing chef-metal cluster__
 
 This is a base chef repo with an app cookbook `myapp` for trying out
