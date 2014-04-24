@@ -2,6 +2,10 @@
 cookbooks
 nodes
 clients
+
+Gemfile.lock
+Berksfile.lock
+
 ###
 # Ignore Chef key files and secrets
 ###

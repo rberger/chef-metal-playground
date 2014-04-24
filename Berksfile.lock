@@ -1,6 +1,0 @@
-DEPENDENCIES
-  rm-metal-cluster
-    path: ../rm-metal-cluster
-
-GRAPH
-  rm-metal-cluster (0.1.0)
