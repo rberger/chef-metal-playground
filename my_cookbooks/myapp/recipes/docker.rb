@@ -22,6 +22,6 @@ require 'chef_metal_docker'
 
 with_provisioner ChefMetalDocker::DockerProvisioner.new
 
-with_provisioner_options 'base_image' => 'ubuntu:precise', 'command' => 'supervisor -c /etc/supervisor.conf"'
+with_provisioner_options 'base_image' => 'ubuntu:precise',  'create_container' => { 'command' =>  '/usr/sbin/sshd -D'}
 
 execute 'docker pull ubuntu'
