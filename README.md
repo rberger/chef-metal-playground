@@ -102,7 +102,7 @@ Feel free to change for your environment:
 ## Install Docker
 
 * http://docs.docker.io/installation/mac/
-
+* export DOCKER_HOST=tcp://localhost:4243
 
 ## Create an admin client on your chef server
 
