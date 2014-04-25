@@ -211,11 +211,11 @@ Vagrant provisioner
 
 
 ```
-chef-metal-playground git:(master) ✗ chef-client -o myapp::chefserver,myapp::vagrant,myapp::my_machines -l info
+chef-client -o myapp::chefserver,myapp::vagrant,myapp::my_machines -l info
 ```
 
 ## Deploying a server to Docker
 
 ```
-chef-metal-playground git:(master) ✗ chef-client -o myapp::chefserver,myapp::docker,myapp::my_machines -l info
+chef-client -o myapp::chefserver,myapp::docker,myapp::my_machines -l info
 ```
