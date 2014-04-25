@@ -1,13 +1,33 @@
 # Overview
 
-__NOTE: UNDER CONSTRUCTION Not yet working fully__
+## Status
 
-__Chef-Repo for testing chef-metal cluster__
+__UNDER CONSTRUCTION__ _Not yet working fully_
+
+As of April 24, 2014:
+
+* The vagrant version works fine. (but doesn't really do anything)
+* The docker version "succeeds" but doesn' leave a running container
+    * The chef-client run on my workstation completes without error,
+    * Creates the image / container
+    * Runs the chef-client on the container and succeeds.
+    * __BUT__ the container then exits and is no longer available
+
+So I'm trying to figure out how to get the container to stay up and
+act like a vm.
+
+## Chef-Repo for testing chef-metal cluster
 
 This is a base chef repo with an app cookbook `myapp` for trying out
 chef-metal and various chef-metal provisioners. It primiarily will be
 using a real Chef Server and not chef-server mainly because that is my
 use case and is not yet well documented.
+
+This first experiment is trying to use Docker containers to act like
+lightweight VMs so we can simulate a cluster of servers on a laptop.
+This is not the "docker way" but it solves and immediate need until we
+can figure out how to fully utilize docker for compositing services
+into servers.
 
 # Prerequeistes / Assumptions
 
@@ -162,7 +182,40 @@ the target infrastructure (provisioner) from the description of how
 the instance (machine) is defined.
 
 The cookbook `myapp` in `my_cookbooks/myappp` is a cluster cookbook.
-In  `my_cookbooks/myappp/recipes` there is a recipe `that describes the
-machines to be built 
+
+The goal of the cookbook is to show how to bring up machines with
+chef-metal and an open source chef-server (not chef-zero) and be able
+to target different provisioners by including the appropriate recipe
+in the run list (`vagrant.rb` and `docker.rb` for now).
+
+The first attempt is to get a docker container to come up and stay up
+with ssh enabled.
+
+In  `my_cookbooks/myappp/recipes` there are the following  recipes:
+
+* `my_machines.rb`: The actual machine[s] to build
+* `chefserver.rb`: Specifies chef-server to be used by the instances
+  when they run their local chef-client runs. Should be the first
+  thing in your run_list if you are using a real chef-server (only
+  tested this way and using Open Source Chef Server)
+* `vagrant.rb`: Include this in the run list if you want to target the
+Vagrant provisioner
+* `docker.rb`: Include this in the run list if you want to target the
+  docker provisioner. Right now this also has the command that should
+  be run after the local chef-client run (though right now, Apr 24,
+  2014, its not running that command)
+* `delete_machines.rb`: Will delete the machines (This will probably
+  go away once I figure out how to do this correctly)
 
 ## Deploying a server with Vagrant
+
+
+```
+chef-metal-playground git:(master) ✗ chef-client -o myapp::chefserver,myapp::vagrant,myapp::my_machines -l info
+```
+
+## Deploying a server to Docker
+
+```
+chef-metal-playground git:(master) ✗ chef-client -o myapp::chefserver,myapp::docker,myapp::my_machines -l info
+```
